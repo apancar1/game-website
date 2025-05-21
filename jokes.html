@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HTML CSS Website</title>
+    <title>Sample Website</title>
     <!-- changed title --> 
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="https://cdn.lineicons.com/5.0/lineicons.css" />
@@ -61,78 +61,42 @@
          </div>
     </nav>
 
-    <!-- HERO SECTION -->
+    <!-- MAIN SECTION -->
      <div class="main">
         <div class="main__container">
             <div class="main__content">
-                <h1>Arsheen Pancar</h1>
-                <h2>University of Southern California</h2>
-                <p>B.S. Computer Science & Business Administration</p>
-                <button class="main__btn"><a href="https://docs.google.com/document/d/15uOzjtGPXgs3k40ZJGarn251c235aCwCzwcL5bet-50/edit?usp=sharing">Resume</a></button>
-            </div>
-            <div class="main__img--container">
-                <img id="main__img" src="images/pic1.jpg" alt="pic">
-            </div>
-        </div>
-     </div>
+                <h1>HUMOR SECTION</h1>
+                <p>Click the button below for a joke</p>
+                <button class="main__btn" onclick="generateJoke()">Crack Me Up</a></button>
+                <pre id="joke"></pre>
+                <script>
+                    const jokes = {
+                        1: "\nWhy did the programmer quit his job? \n\n He didn't get arrays :(",
+                        2: "\nI wanted to become a programmer, but I couldn't find the right class.",
+                        3: "\nWhy don't programmers like nature? \n\n It has too many bugs.",
+                        4: "\nWhat did the HTML say to the CSS? \n\n You complete me.",
+                        5: "\nWhen 10 met 01, it was love at first byte.",
+                        6: "\nThe grass is always greener on the other side, unless it's a network issue.",
+                        7: "\nMy password is so strong, even I can't crack it",
+                        8: "\nMy computer got a virus, so now it has a byte of a problem.",
+                        9: "\nWhat did the computer do at lunchtime? \n\n Had a byte.",
+                        10: "\nWhy did the computer keep sneezing? \n\n It had a virus!",
+                        11: "\nHow does a computer get drunk? \n\n It takes screenshots!",
+                        12: "\nWhat do you call a computer superhero? \n\n A screensaver!"
+                    }; // enter dictionary of jokes 
 
-     <!-- Services section -->
-      <div class="services">
-        <h1>See what the hype is about</h1>
-        <div class="services__container">
-            <div class="services__card">
-                <h2>Experience Bliss</h2>
-                <p>CS Horoscope Readings</p>
-                <button onclick="location.href='horoscope.html'" class="btn">Get Started</button>
-                <!-- Horoscope -->
-            </div>
-            <div class="services__card">
-                <h2>Relaxing Games</h2>
-                <p>Ready to take a gamble?</p>
-                <button onclick="location.href='tech.html'" class="btn">Get Started</button>
-                <!-- Bingo -->
-            </div>
-            <div class="services__card">
-                <h2>Experience Humor</h2>
-                <p>Are you ready?</p>
-                <button onclick="location.href='jokes.html'" class="btn">Get Started</button>
-                <!-- Humor -->
-            </div>
-        </div>
-      </div>
+                    function generateJoke() {
+                        const keys = Object.keys(jokes);
+                        // gets an array of all the keys from the jokes dictionary (1,2,3,etc)
+                        const randomKey = keys[Math.floor(Math.random() * keys.length)];
+                        // generate a random key 
+                        const joke = jokes[randomKey];
+                        // access value at that random key 
+                        document.getElementById("joke").textContent = joke; 
+                        // finds the element in dictionary by the given ID in the joke variable and displays it as text
+                    }
 
-      <!-- Footer Section -->
-       <div class="footer__container">
-        <div class="footer__links">
-            <div class="footer__link--wrapper">
-                <div class="footer__link--items">
-                    <h2>Social Media</h2>
-                    <a>LinkedIn</a>
-                    <a>Gmail</a>
-                </div>
-                <div class="footer__link--items">
-                    <h2>Contact Us</h2>
-                    <a>Contact</a>
-                    <a>Support</a>
-                    <a>Destinations</a>
-                    <a>Sponsorships</a>
-                </div>
-            </div>
-            <div class="footer__link--wrapper">
-                <div class="footer__link--items">
-                    <!-- <h2>Videos</h2> -->
-                    <!-- <a href="/">Submit Video</a>
-                    <a href="/">Ambassadors</a>
-                    <a href="/">Agency</a>
-                    <a href="/">Influencer</a> -->
-                </div>
-                <div class="footer__link--items">
-                    <!-- <h2>Social Media</h2>
-                    <a href="/">Instagram</a>
-                    <a href="/">Facebook</a>
-                    <a href="/">Youtube</a>
-                    <a href="/">Twitter</a> -->
-                </div>
+                </script>
             </div>
         </div>
         <section class="social__media">
@@ -151,7 +115,7 @@
                 </div>
             </div>
         </section>
-       </div>
+     </div>
 
     <script src = "app.js"></script>
 </body>

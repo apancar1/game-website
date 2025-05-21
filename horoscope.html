@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<!-- this all came from ! and tab -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sample Website</title>
+    <!-- changed title --> 
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdn.lineicons.com/5.0/lineicons.css" />
+    <!-- add link and add the styles.css to the href part -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+    <!-- NAVBAR SECTION -->
+    <nav class="navbar">
+        <!-- create a navbar here ''nav.navbar tab'-->
+         <div class="navbar__container">
+            <!-- create a div -->
+             <a href="/" id="navbar__logo"><i class="lni lni-bulb-2"></i>A.P.</a>
+             <!-- usually upload an image here for the logo -->
+             <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+             </div>
+             <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a href="index.html" class="navbar__links">
+                        Home
+                    </a>
+                </li>
+                <li class="navbar__item">
+                    <a href="horoscope.html" class="navbar__links">
+                        Horoscope
+                    </a>
+                    <!-- under the next part -->
+                </li>
+                <li class="navbar__item">
+                    <a href="tech.html" class="navbar__links">
+                        Bingo
+                    </a>
+                    <!-- under the home part. href part takes you to tech.html now -->
+                </li>
+                <li class="navbar__item">
+                    <a href="jokes.html" class="navbar__links">
+                        Humor
+                        <!-- I want this subpage to randomly generate jokes every time it is clicked on -->
+                    </a>
+                    <!-- under the tech part -->
+                </li>
+                <li class="navbar__btn">
+                    <a href="https://docs.google.com/document/d/15uOzjtGPXgs3k40ZJGarn251c235aCwCzwcL5bet-50/edit?usp=sharing" class="button">
+                        Resume
+                    </a>
+                    <!-- changed item to btn. class is changed to button -->
+                </li>
+             </ul>
+         </div>
+    </nav>
+
+    <!-- MAIN SECTION -->
+     <div class="main">
+        <div class="main__container">
+            <div class="main__content">
+                <h1>HOROSCOPE SECTION</h1>
+                <p>Click your Zodiac language for a reading</p>
+                <button class="main__btn" onclick="generateHoroscope('Python')">Python</a></button>
+                <button class="main__btn" onclick="generateHoroscope('Java')">Java</a></button>
+                <button class="main__btn" onclick="generateHoroscope('JavaScript')">JavaScript</a></button>
+                <button class="main__btn" onclick="generateHoroscope('C#')">C#</a></button>
+                <button class="main__btn" onclick="generateHoroscope('C')">C</a></button>
+                <button class="main__btn" onclick="generateHoroscope('Go')">Go</a></button>
+                <button class="main__btn" onclick="generateHoroscope('Ruby')">Ruby</a></button>
+                <button class="main__btn" onclick="generateHoroscope('PHP')">PHP</a></button>
+                <button class="main__btn" onclick="generateHoroscope('Swift')">Swift</a></button>
+                <button class="main__btn" onclick="generateHoroscope('SQL')">SQL</a></button>
+                <pre id="result"></pre>
+                <script>
+                    const readings = {
+                        "Python": ["\nYou are THE INTUITIVE. \n\n You'll write fewer lines today and accomplish more than expected. Simplicity is your strength",
+                         "\nYou are THE INTUITIVE. \n\n A new library awaits. Don't fear it. You were made to adapt."],
+                        "Java": ["\nYOU ARE THE RELIABLE ONE. \n\n Structure and predictability bring success. Trust the process, even if it's verbose.", 
+                        "\nYou are THE RELIABLE ONE. \n\n You might feel constrained, but today, design patterns are your secret weapon."],
+                        "JavaScript": ["\nYou are THE SHAPE-SHIFTER \n\n You'll transform more than once today, just like your variables. Stay nimble", 
+                        "\nYou are THE SHAPE-SHIFTER \n\n A spontaneous idea will work across browsers. Just don't trust '==' too much."],
+                        "C#": ["\nYou are THE MODERNIST \n\n The .NET world is your playground today. Frameworks align in your favor", 
+                        "\nYou are THE MODERNIST \n\n Clean architecture will bring clarity to your team. Take charge."],
+                        "TypeScript": ["\nYou are THE PROTECTOR \n\n Your foresight (and types) will save hours of debugging. Stick to strong contracts.", 
+                        "\nYou are THE PROTECTOR \n\n Someone will try to wing it in JS, you'll be the reason the app doesn't crash."],
+                        "C++": ["\nYou are THE VETERAN \n\n Legacy code seeks your wisdom. Step carefully, manual memory is not for the faint of heart.", 
+                        "\nYou are THE VETERAN \n\n Today calls for performance. No abstraction is faster than you."],
+                        "C": ["\nYou are THE PURIST \n\n Minimalism reigns. Today, clarity comes from control, not convenience.", 
+                        "\nYou are THE PURIST \n\n An off-by-one error will tempt you. Trust your instincts, count carefully."],
+                        "Go": ["\nYou are THE PRAGMATIST \n\n Today favors speed and clarity. Don't overcomplicate, concurrency is on your side", 
+                        "\nYou are THE PRAGMATIST \n\n Simplicity brings peace. Write is plainly, and others will thank you."],
+                        "Ruby": ["\nYou are THE ARTIST \n\n Code from the heart. What you write today may not be the fastest, but it will be the most elegant.", 
+                        "\nYou are THE ARTIST \n\n A Rails route opens new doors. Trust your conventions."],
+                        "PHP": ["\nYou are THE HUSTLER \n\n It may not be flashy, but you get things done. Today, your practicality shines.", 
+                        "\nYou are THE HUSTLER \n\n Don't apologize for quick wins, they keep the internet running."],
+                        "Swift": ["\nYou are THE CREATOR \n\n A new UI idea is bubbling up. Let your design instincts guide your code.", 
+                        "\nYou are THE CREATOR \n\n The App Store star is aligned, submit boldly."],
+                        "SQL": ["\nYou are THE ANALYST \n\n The answers are in the data. Today, your JOIN will be the link someone else missed.", 
+                        "\nYou are THE ANALYST \n\n A slow query hides a lesson. Optimize with care, it will pay off."]
+                    }; // enter dictionary of jokes 
+
+                    function generateHoroscope(language) {
+                        const options = readings[language];
+                        // gets an array of all the keys from the jokes dictionary (1,2,3,etc)
+                        const randomKey = Math.floor(Math.random() * options.length);
+                        // generate a random key 
+                        const result = options[randomKey];
+                        // access value at that random key 
+                        document.getElementById("result").textContent = result; 
+                        // finds the element in dictionary by the given ID in the joke variable and displays it as text
+                    }
+
+                </script>
+            </div>
+        </div>
+        <section class="social__media">
+            <div class="social__media--wrap">
+                <div class="footer__logo">
+                    <a href="/" id="footer__logo"><i class = "lni lni-bulb-2"></i>A.P.</a>
+                </div>
+                <p class="website__rights">© A.P. 2025. All rights reserved</p>
+                <div class="social__icons">
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=pancar@usc.edu" target="_blank" class="social__icon--link" target = "_blank">
+                        <i class="lni lni-envelope-1"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/arsheen-pancar/" class="social__icon--link" target = "_blank">
+                        <i class="lni lni-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+     </div>
+
+    <script src = "app.js"></script>
+</body>
+</html>

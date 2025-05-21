@@ -19,7 +19,7 @@
         <!-- create a navbar here ''nav.navbar tab'-->
          <div class="navbar__container">
             <!-- create a div -->
-             <a href="/" id="navbar__logo"> <i class="lni lni-diamonds-1"></i> NEXT</a>
+             <a href="/" id="navbar__logo"><i class="lni lni-bulb-2"></i>A.P.</a>
              <!-- usually upload an image here for the logo -->
              <div class="navbar__toggle" id="mobile-menu">
                 <span class="bar"></span>
@@ -28,26 +28,32 @@
              </div>
              <ul class="navbar__menu">
                 <li class="navbar__item">
-                    <a href="/" class="navbar__links">
+                    <a href="index.html" class="navbar__links">
                         Home
+                    </a>
+                </li>
+                <li class="navbar__item">
+                    <a href="horoscope.html" class="navbar__links">
+                        Horoscope
                     </a>
                     <!-- under the next part -->
                 </li>
                 <li class="navbar__item">
                     <a href="tech.html" class="navbar__links">
-                        Tech
+                        Bingo
                     </a>
                     <!-- under the home part. href part takes you to tech.html now -->
                 </li>
                 <li class="navbar__item">
-                    <a href="/" class="navbar__links">
-                        Products
+                    <a href="jokes.html" class="navbar__links">
+                        Humor
+                        <!-- I want this subpage to randomly generate jokes every time it is clicked on -->
                     </a>
                     <!-- under the tech part -->
                 </li>
                 <li class="navbar__btn">
-                    <a href="/" class="button">
-                        Sign up
+                    <a href="https://docs.google.com/document/d/15uOzjtGPXgs3k40ZJGarn251c235aCwCzwcL5bet-50/edit?usp=sharing" class="button">
+                        Resume
                     </a>
                     <!-- changed item to btn. class is changed to button -->
                 </li>
@@ -59,14 +65,109 @@
      <div class="main">
         <div class="main__container">
             <div class="main__content">
-                <h1>TECH SECTION</h1>
-                <p>Check out our technologies</p>
-                <button class="main__btn"><a href="#">Get Started</a></button>
+                <h1>GAMES SECTION</h1>
+                <p>Play a game of Bingo below</p>
+                <button onclick="playBingo()" class="main__btn">Get Started</button>
+                <div id="bingoBoard"></div>
+                <button onclick="generateNumbers()" class="main__btn">Call Number</button>
+                <div id="calledNumber"></div>
+                <script>
+                    let callednums = [];
+                    let boardNumbers = []; 
+                    function playBingo() {
+                        const bingoContainer = document.getElementById("bingoBoard");
+                        // get the reference to the bingoboard 
+                        bingoContainer.innerHTML = "";
+                        // clears the previous bingo board if there is one already 
+
+                        // to generate the numbers 
+                        boardNumbers = []; // empty array 
+
+                        // to generate the table 
+                        const table = document.createElement("table");
+                        table.style.borderCollapse = "collapse";
+                        table.style.marginTop = "20px";
+                        // creates table & styling 
+                        for (let i = 0; i < 5; i++) {
+                            // loop through the rows 
+                            const row = document.createElement("tr");
+                            // create a row 
+                            for (let j = 0; j < 5; j++){
+                                // loop through the columns 
+                                const cell = document.createElement("td");
+                                // create the individual cell 
+                                let value; 
+                                do {
+                                    value = Math.floor(Math.random() * 75) + 1;
+                                }
+                                while (boardNumbers.includes(value));
+                                boardNumbers.push(value);
+                                cell.textContent = value; 
+                                cell.setAttribute('data-number', value);
+                                cell.style.border = "1px solid black";
+                                cell.style.padding = "15px";
+                                cell.style.textAlign = "center";
+                                cell.style.fontSize = "18px";
+                                
+                                row.appendChild(cell);
+                                // style the cell and add it to the row 
+                            }
+                            table.appendChild(row);
+                            // add the row to the table 
+                        }
+                        bingoContainer.appendChild(table);
+                        callednums = [];
+                        // finalize the table 
+                    }
+
+                    function generateNumbers() {
+                        if (callednums.length >= 75){
+                            alert("All numbers called");
+                            return; 
+                        }
+                        let num; 
+                        do {
+                            num = Math.floor(Math.random() * 75) + 1;
+                        }
+                        while (callednums.includes(num));
+                        callednums.push(num);
+                        document.getElementById("calledNumber").textContent = `Number Called: ${num}`;
+
+                        // Check if the number is already in the table & mark red if it is 
+                        const allNums = document.getElementById("bingoBoard");
+                        if (!allNums){
+                            return; 
+                        }
+
+                        const allCells = allNums.querySelectorAll('td[data-number]');
+                        allCells.forEach(cell => {
+                            if (parseInt(cell.getAttribute('data-number')) === num) {
+                                cell.style.color = 'red';
+                            }
+                        });
+                    }
+                </script>
             </div>
-            <div class="main__img-container">
+            <!-- <div class="main__img-container">
                 <img src="images/pic2.jpg" alt="pic" id="main__img">
-            </div>
+            </div> -->
         </div>
+        <section class="social__media">
+            <div class="social__media--wrap">
+                <div class="footer__logo">
+                    <a href="/" id="footer__logo"><i class = "lni lni-bulb-2"></i>A.P.</a>
+                </div>
+                <p class="website__rights">© A.P. 2025. All rights reserved</p>
+                <div class="social__icons">
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=pancar@usc.edu" target="_blank" class="social__icon--link" target = "_blank">
+                        <i class="lni lni-envelope-1"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/arsheen-pancar/" class="social__icon--link" target = "_blank">
+                        <i class="lni lni-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
      </div>
 
     <script src = "app.js"></script>
