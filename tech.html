@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdn.lineicons.com/5.0/lineicons.css" />
     <!-- add link and add the styles.css to the href part -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet" />
 </head>
@@ -67,6 +68,7 @@
             <div class="main__content">
                 <h1>GAMES SECTION</h1>
                 <p>Play a game of Bingo below</p>
+                <h3>Fun Fact: On average, it takes 41 drawn numbers to win!</h3>
                 <button onclick="playBingo()" class="main__btn">Get Started</button>
                 <div id="bingoBoard"></div>
                 <button onclick="generateNumbers()" class="main__btn">Call Number</button>
@@ -145,6 +147,92 @@
                                 cell.style.color = 'red';
                             }
                         });
+                        checkWin(); 
+                    }
+
+                    function checkWin() {
+                        const table = document.querySelector("#bingoBoard table");
+                        const rows = table.rows;
+
+                        // check all rows 
+                        for (let i = 0; i < 5; i++){
+                            let count = 0; 
+                            for (let j = 0; j < 5; j++){
+                                if (rows[i].cells[j].style.color === 'red'){
+                                    count++;
+                                }
+                            }
+                            if (count === 5){
+                                dropConfetti(); 
+                                alert("Bingo!");
+                                return; 
+                            }
+                        }
+
+                        // check all columns 
+                        for (let j = 0; j < 5; j++){
+                            let count = 0; 
+                            for (let i = 0; i < 5; i++){
+                                if (rows[i].cells[j].style.color === 'red'){
+                                    count++;
+                                }
+                            }
+                            if (count === 5){
+                                dropConfetti(); 
+                                alert("Bingo!");
+                                return; 
+                            }
+                        }
+
+                        // check for diagonal 
+                        let diagonal = 0; 
+                        for (let i = 0; i < 5; i++){
+                            if (rows[i].cells[i].style.color === 'red'){
+                                diagonal++;
+                            }
+                        }
+                        if (diagonal === 5){
+                            dropConfetti(); 
+                            alert("Bingo!");
+                            return; 
+                        }
+
+                        // check for anti-diagonal 
+                        let anti = 0; 
+                        for (let i = 0; i < 5; i++){
+                            if (rows[i].cells[4-i].style.color === 'red'){
+                                anti++; 
+                            }
+                        }
+                        if (anti === 5){
+                            dropConfetti(); 
+                            alert("Bingo!");
+                            return; 
+                        }
+                    }
+
+                    function dropConfetti() {
+                        const duration = 2 * 1000; 
+                        const end = Date.now() + duration; 
+
+                        (function frame() {
+                            confetti({
+                                particleCount: 5,
+                                angle: 60,
+                                spread: 55,
+                                origin: { x: 0}
+                            });
+                            confetti({
+                                particleCount: 5,
+                                angle: 120,
+                                spread: 55, 
+                                origin: { x: 1}
+                            });
+
+                            if (Date.now() < end){
+                                requestAnimationFrame(frame);
+                            }
+                        })(); 
                     }
                 </script>
             </div>
